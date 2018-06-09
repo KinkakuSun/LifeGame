@@ -31,6 +31,9 @@ public class GameFrame extends JFrame implements ActionListener {
     private int chooseModel;
     private boolean isSelect = true;
     
+    public static void main(String arg[]) {  
+        frame = new GameFrame("LifeGame");  
+    }
     
     public int getMaxRow() {  
         return maxRow;  
@@ -84,7 +87,7 @@ public class GameFrame extends JFrame implements ActionListener {
         centerPanel = new JPanel(new GridLayout(maxRow, maxCol));  
         bottomPanel = new JPanel();  
         
-        //下拉选项初始化，最小为3，最大为60
+        //下拉选项初始化，最小为3，最大为100
         rowList = new JComboBox();  
         for (int i = 3; i <= 100; i++) {  
             rowList.addItem(String.valueOf(i));  
@@ -99,14 +102,13 @@ public class GameFrame extends JFrame implements ActionListener {
         }  
         //设置开始的默认选项
         rowList.setSelectedIndex(maxRow - 3);  
-        
         btnOK = new JButton("确定");   
         btnBlock = new JButton[maxRow][maxCol];  
         btnStart = new JButton("开始");  
         btnStop = new JButton("停止");  
         btnExit = new JButton("退出");  
         isSelected = new boolean[maxRow][maxCol];  
-        lblRow = new JLabel("设置行数：");  
+        lblRow = new JLabel("设置大小：");  
         lblMod = new JLabel("演示模型：");  
         this.setContentPane(backPanel);  
   
@@ -121,7 +123,7 @@ public class GameFrame extends JFrame implements ActionListener {
             }  
         }  
   
-        bottomPanel.add(lblRow);  
+        bottomPanel.add(lblRow);
         bottomPanel.add(rowList);
         bottomPanel.add(btnOK);
         bottomPanel.add(lblMod);
@@ -168,8 +170,9 @@ public class GameFrame extends JFrame implements ActionListener {
     //按钮触发事件
     public void actionPerformed(ActionEvent e) {  
         if (e.getSource() == btnOK) {//确定按钮 设置网格的行和列
-            frame.setMaxRow(rowList.getSelectedIndex() + 3);  
-            frame.setMaxCol(rowList.getSelectedIndex() + 3);
+        	int num = rowList.getSelectedIndex() + 3;
+            frame.setMaxRow(num); 
+            frame.setMaxCol(num);
             initGUI();  
             life = new Life(getMaxRow(), getMaxCol()); 
         } else if (e.getSource() == btnStart) {  //开始按钮 开启线程进行迭代
