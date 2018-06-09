@@ -16,7 +16,8 @@ public class Life {
             for (int col = 0; col <= maxCol + 1; col++)  
                 grid[row][col] = 0;  
     }  
-  
+    
+    
     
     //»ñÈ¡Íø¸ñ
     public int[][] getGrid() {  

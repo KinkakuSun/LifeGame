@@ -32,11 +32,6 @@ public class GameFrame extends JFrame implements ActionListener {
     private boolean isSelect = true;
     
     
-    //
-    public static void main(String arg[]) {  
-        frame = new GameFrame("LifeGame");  
-    }  
-  
     public int getMaxRow() {  
         return maxRow;  
     }  
